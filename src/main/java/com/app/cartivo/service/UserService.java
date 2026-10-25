@@ -1,9 +1,10 @@
-package com.app.cartivo;
+package com.app.cartivo.service;
 
+import com.app.cartivo.repository.UserRepository;
+import com.app.cartivo.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,7 +13,7 @@ import java.util.Optional;
 public class UserService {
     private final UserRepository userRepository;
 //    private List<User> userList = new ArrayList<>();
-    private Long nextId=1L;
+//    private Long nextId=1L;
 
     public List<User> fetchAllUsers(){
         return userRepository.findAll();
