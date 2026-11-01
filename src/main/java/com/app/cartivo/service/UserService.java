@@ -1,6 +1,7 @@
 package com.app.cartivo.service;
 
 import com.app.cartivo.dto.AddressDTO;
+import com.app.cartivo.dto.UserRequest;
 import com.app.cartivo.dto.UserResponse;
 import com.app.cartivo.repository.UserRepository;
 import com.app.cartivo.model.User;
@@ -23,10 +24,14 @@ public class UserService {
                 .map(this::mapToUserResponse)
                 .collect(Collectors.toList());
     }
-    public void addUser(User user){
+    public void addUser(UserRequest userRequest){
 //        user.setId(nextId++);
+        User user = new User();
+        updateUserFromRequest(user, userRequest);
         userRepository.save(user);
     }
+
+
 
     public Optional<UserResponse> fetchUser(Long id) {
         return userRepository.findById(id)
@@ -40,6 +45,14 @@ public class UserService {
                     return true;
                 }).orElse(false);
     }
+
+    private void updateUserFromRequest(User user, UserRequest userRequest) {
+        user.setFirstName(userRequest.getFirstName());
+        user.setLastName(userRequest.getLastName());
+        user.setEmail(userRequest.getEmail());
+        user.setPhone(userRequest.getPhone());
+    }
+
     private UserResponse mapToUserResponse(User user){
         UserResponse response = new UserResponse();
         response.setId(String.valueOf(user.getId()));
