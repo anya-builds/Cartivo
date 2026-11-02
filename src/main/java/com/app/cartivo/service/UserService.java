@@ -3,6 +3,7 @@ package com.app.cartivo.service;
 import com.app.cartivo.dto.AddressDTO;
 import com.app.cartivo.dto.UserRequest;
 import com.app.cartivo.dto.UserResponse;
+import com.app.cartivo.model.Address;
 import com.app.cartivo.repository.UserRepository;
 import com.app.cartivo.model.User;
 import lombok.RequiredArgsConstructor;
@@ -51,9 +52,17 @@ public class UserService {
         user.setLastName(userRequest.getLastName());
         user.setEmail(userRequest.getEmail());
         user.setPhone(userRequest.getPhone());
+        if(userRequest.getAddress() != null){
+            Address address = new Address();
+            address.setStreet(userRequest.getAddress().getStreet());
+            address.setState(userRequest.getAddress().getState());
+            address.setZipcode(userRequest.getAddress().getZipcode());
+            address.setCity(userRequest.getAddress().getCity());
+            address.setCountry(userRequest.getAddress().getCountry());
+        }
     }
 
-    private UserResponse mapToUserResponse(User user){
+    private UserResponse mawpToUserResponse(User user){
         UserResponse response = new UserResponse();
         response.setId(String.valueOf(user.getId()));
         response.setFirstName(user.getFirstName());
