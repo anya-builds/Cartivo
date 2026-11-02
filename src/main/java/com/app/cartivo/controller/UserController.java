@@ -38,8 +38,8 @@ public class UserController {
         return ResponseEntity.ok("User Added Successfully");
     }
 @PutMapping("/{id}")
-    public ResponseEntity<String> updateUser(@PathVariable Long id, @RequestBody User updateUser){
-        boolean updated = userService.updateUser(id, updateUser);
+    public ResponseEntity<String> updateUser(@PathVariable Long id, @RequestBody UserRequest updateUserRequest){
+        boolean updated = userService.updateUser(id, updateUserRequest);
         if(updated)
             return ResponseEntity.ok("User updated successfully");
         return ResponseEntity.notFound().build();

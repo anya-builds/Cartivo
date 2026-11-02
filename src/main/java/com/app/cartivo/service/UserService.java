@@ -38,11 +38,11 @@ public class UserService {
         return userRepository.findById(id)
                 .map(this::mapToUserResponse);
     }
-    public boolean updateUser(Long id, User updateUser){
+    public boolean updateUser(Long id, UserRequest updateUserRequest){
         return userRepository.findById(id)
                 .map(existingUser -> {
-                    existingUser.setFirstName(updateUser.getFirstName());
-                    existingUser.setLastName(updateUser.getLastName());
+                    updateUserFromRequest(existingUser, updateUserRequest);
+                    userRepository.save(existingUser);
                     return true;
                 }).orElse(false);
     }
@@ -62,7 +62,7 @@ public class UserService {
         }
     }
 
-    private UserResponse mawpToUserResponse(User user){
+    private UserResponse mapToUserResponse(User user){
         UserResponse response = new UserResponse();
         response.setId(String.valueOf(user.getId()));
         response.setFirstName(user.getFirstName());
