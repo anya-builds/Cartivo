@@ -2,7 +2,6 @@ package com.app.cartivo.controller;
 
 import com.app.cartivo.dto.UserRequest;
 import com.app.cartivo.dto.UserResponse;
-import com.app.cartivo.model.User;
 import com.app.cartivo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

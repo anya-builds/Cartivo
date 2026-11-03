@@ -59,6 +59,7 @@ public class UserService {
             address.setZipcode(userRequest.getAddress().getZipcode());
             address.setCity(userRequest.getAddress().getCity());
             address.setCountry(userRequest.getAddress().getCountry());
+            user.setAddress(address);
         }
     }
 
