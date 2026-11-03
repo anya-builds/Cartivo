@@ -41,4 +41,13 @@ public class ProductService {
         product.setStockQuantity(productRequest.getStockQuantity());
         
     }
+
+    public ProductResponse updateProduct(Long id, ProductRequest productRequest) {
+        return productRepository.findById(id)
+                .map(existingProduct -> {
+                    updateProductFromRequest(existingProduct, productRequest);
+                    Product savedProduct = productRepository.save(existingProduct);
+                    return mapToProductResponse(savedProduct);
+                }).orElseThrow(() -> new RuntimeException("Product Not Found: " + id));
+    }
 }
