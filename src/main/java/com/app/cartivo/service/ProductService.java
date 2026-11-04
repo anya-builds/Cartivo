@@ -5,6 +5,7 @@ import com.app.cartivo.dto.ProductResponse;
 import com.app.cartivo.model.Product;
 import com.app.cartivo.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -67,5 +68,10 @@ public class ProductService {
                     productRepository.save(product);
                     return true;
                 }).orElse(false);
+    }
+
+    public List<ProductResponse> searchProducts(String keyword) {
+        return productRepository.searchProducts(keyword).stream()
+                .ma
     }
 }
