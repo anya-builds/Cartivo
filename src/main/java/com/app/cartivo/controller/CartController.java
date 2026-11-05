@@ -14,10 +14,12 @@ public class CartController {
 
     private final CartService cartService;
     @PostMapping
-    public ResponseEntity<Void> addToCart(
+    public ResponseEntity<String> addToCart(
             @RequestHeader("X-User-ID") String userId,
             @RequestBody CartItemRequest request){
-        cartService.addToCart(userId, request);
+       if (!cartService.addToCart(userId, request)){
+            return ResponseEntity.badRequest().body("Product out of stock or user not found or product not found");
+       }
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
