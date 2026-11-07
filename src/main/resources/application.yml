@@ -25,9 +25,15 @@ management:
   endpoint:
     health:
       show-details: always
+    shutdown:
+      enabled: true
+
   info:
     env:
       enabled: true
+
+server:
+  shutdown: graceful
 
 info:
   app:
