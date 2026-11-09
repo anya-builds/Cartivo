@@ -17,7 +17,8 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-      
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
 #  h2:
 #    console:
 #      enabled: true
